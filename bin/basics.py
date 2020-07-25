@@ -1,0 +1,13 @@
+# Git basics
+
+# git status
+
+# git diff
+
+# git add
+
+# git commit -m "message"
+
+#git push
+
+
