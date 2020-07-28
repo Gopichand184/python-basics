@@ -10,7 +10,10 @@
 
 #git push
 
-#git clone
+#git clones
 
 
 # https://support.apple.com/en-us/HT201236
+x=[1,2,3,4,5]
+y=x.count()
+print(y)
