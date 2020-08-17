@@ -4,19 +4,28 @@ with open("/Users/apple/Downloads/785492_1361825_bundle_archive/covid.csv",'r') 
     reader = csv.reader(covid)
     x = []
     col = []
+    disease = {}
     for data in reader:
         x.append(data)
-    fields = x[0]
+        fields = x[0]
+        x[0].append("disease")
+        x[0].append("linage")
+        # print(x[0])
+        # exit()
+    col.append(x[0][0])
     col.append(x[0][1])
     col.append(x[0][2])
     col.append(x[0][3])
+    col.append(x[0][23])
+    col.append(x[0][24])
     # print(col)
+    # exit()
     # print(fields)
     rows = x[1:]
     # dict = dict(zip(x[0],x[1]))
+    # print(dict.keys())
     # print(dict)
     # exit()
-
 
     # print(fields)
     # print(rows)
@@ -44,9 +53,15 @@ for row in rows:
     l.append(row[9])
     sum = (row[8]+row[9])
     l.append(sum)
-
-    # print(l)
-    # exit()
+    disease[x[0][7]] = {row[7]}
+    disease[x[0][10]] = {row[10]}
+    # print(list)
+    # print(disease)
+    l.append(disease)
+    list = [x[0][11], x[0][12], x[0][13],x[0][14]]
+    l.append(list)
+    print(l)
+    exit()
     updated_list.append(l)
     # print(updated_list)
     # exit()
@@ -55,6 +70,7 @@ with open('covid1','w') as c1:
         writer = csv.writer(c1)
         writer.writerow(col)
         writer.writerows(updated_list)
+
 # sex,patient_type,entry_date,diseases,linage
 # female,positive,04-05-2020,27,97,124,{"peneumonia":1,"diabates":0},[]
 # female,positive,19-03-2020,24,97,121,{"peneumonia":1,"diabates":0},[]
