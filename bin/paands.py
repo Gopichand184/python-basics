@@ -26,7 +26,7 @@ import numpy as np
 # print(s_sub)
 # print('max',s_add.max())
 # labels =[1,2,3,4]
-data = {'name':["anil",'chandu','sai','raja'],'age':['27','23','25','26'],'id':['1234','5463','2345','2635'],
+data = {'name':["anil",'chandu','sai','raja'],'age':['27','23','25','26'],'id':['1234','5463','2345','1234'],
         'email id':['anil@gmail.com','chandu@gmail.com','sai@gmail.com','raja@gmail.com']}
 data1 = {'name':["anil",'chandu','sai','raja'],'age':['27','23','25','26'],'id':['1234','2134','2345','2635'],
         'email id':['anil@gmail.com','chandu@gmail.com','sai@gmail.com','raja@gmail.com']}
@@ -40,12 +40,15 @@ df['gender'] = ['male','male','male','male']
 # print(df)
 # print(df[1:3])
 df2 = df.append(df1)
+# x = pd.merge(df,df1, on='id')
+# print(x)
+grp = df.groupby('id')
+print(grp.get_group('1234'))
 # df2.pop('age')
-print(df2)
+# print(df2)
 # x= df.head(3)
 # x = df.isnull
 # x = df2.duplicated()
-
 # print(x)
 # print(df.loc[3])
 # print(df.columns)
