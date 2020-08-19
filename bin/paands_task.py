@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-# lables =
 data = {'Emp_name':['Frank','jessi','Bent','Hardward','smith'],'Emp_id':['1234','2345','3634','1782','3739'],
       'gender':['male','female','male','male','male'],"salary":['20$','47$','35$','45$','37$']}
 data1 ={'stu_name':['jack','peter','anna'],'stu_id':['35','67','87'],'stu_marks':['20','30','40']}
@@ -8,38 +7,38 @@ df = pd.DataFrame(data,index=[1,2,3,4,5])
 df1 = pd.DataFrame(data1,index=[1,2,3])
 rows = len(df.axes[0])
 columns= len(df.axes[1])
-# df['rank']= ['a','b','c','d','e']
-# df['Emp_name']= df['Emp_name'].replace('Frank','harley')
-# df.pop
-# print(df)
-# df.loc['6'] = ['harley','7564','male','50$']
-# res = df.sort_values(by ='Emp_name')
-# print(res)
-# print(df)
-# print("Total rows is:",rows)
-# print("Total columns is:",columns)
-# print(df)
-# print(df.info())
-# print(df1)
+df['rank']= ['a','b','c','d','e']
+df['Emp_name']= df['Emp_name'].replace('Frank','harley')
+df.pop
+print(df)
+df.loc['6'] = ['harley','7564','male','50$']
+res = df.sort_values(by ='Emp_name')
+print(res)
+print(df)
+print("Total rows is:",rows)
+print("Total columns is:",columns)
+print(df)
+print(df.info())
+print(df1)
 df2 = pd.concat([df,df1])
-# print(df2)
-# print(df.iloc[1])
-# print(df.head(3))
-# print(df.iloc[[1,2],[0,3]])
-# print(df[df['salary']>'20$'])
-# print(df[df['salary'].between('20$','40$')])
-# print(df['salary'].sum())
-# print(df1['stu_marks'].mean())
-# print(df[['Emp_name','salary']])
-# x = df2.isnull
-# x = df2.dropna()
-# x = df2.fillna('hi')
-# x = df2.sort_values('Emp_name')
-# x= df2.count()
-# x = df.rename(columns={'Emp_name':'EMP_NAME'})
-# x = df.replace('1','one')
-# x =list(df.columns.values)
-# g1 = df.groupby(["Emp_name"]).size().reset_index(name='Number of people')
+print(df2)
+print(df.iloc[1])
+print(df.head(3))
+print(df.iloc[[1,2],[0,3]])
+print(df[df['salary']>'20$'])
+print(df[df['salary'].between('20$','40$')])
+print(df['salary'].sum())
+print(df1['stu_marks'].mean())
+print(df[['Emp_name','salary']])
+x = df2.isnull
+x = df2.dropna()
+x = df2.fillna('hi')
+x = df2.sort_values('Emp_name')
+x= df2.count()
+x = df.rename(columns={'Emp_name':'EMP_NAME'})
+x = df.replace('1','one')
+x =list(df.columns.values)
+g1 = df.groupby(["Emp_name"]).size().reset_index(name='Number of people')
 print(g1)
 
 
