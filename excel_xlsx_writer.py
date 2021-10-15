@@ -55,7 +55,6 @@ def sub_header_date_format(workbook):
     sub_header_format_date_fmt.set_bold()
     sub_header_format_date_fmt.bg_color = '#D3D3D3'
     sub_header_format_date_fmt.set_align('center')
-    sub_header_format_date_fmt.set_num_format('m"/"d;')
     return sub_header_format_date_fmt
 
 def main_header_format(workbook):
@@ -102,13 +101,13 @@ def write_sub_headers(workbook, worksheet, column_count, sensitivity, valuation_
     sub_header_date_format2 = sub_header_date_format(workbook)
     sub_header_date_format2.set_right(1)
 
-    sub_header_date_format1.set_num_format('mm"/"dd;@')
-    sub_header_date_format2.set_num_format('mm"/"dd;@')
+    sub_header_date_format1.set_num_format(';;; "{}" '.format(valuation_date[5:]))
+    sub_header_date_format2.set_num_format(';;; "{}" '.format(valuation_date[5:]))
     
-    worksheet.write(2, column_count + 1, valuation_date, sub_header_date_format1)
-    worksheet.write(2, column_count + 2, valuation_date, sub_header_date_format1)
-    worksheet.write(2, column_count + 3, valuation_date, sub_header_date_format1)
-    worksheet.write(2, column_count + 4, valuation_date, sub_header_date_format2)
+    worksheet.write(2, column_count + 1, " " + valuation_date+ " ", sub_header_date_format1)
+    worksheet.write(2, column_count + 2, " " + valuation_date+ " ", sub_header_date_format1)
+    worksheet.write(2, column_count + 3, " " + valuation_date+ " ", sub_header_date_format1)
+    worksheet.write(2, column_count + 4, " " + valuation_date+ " ", sub_header_date_format2)
 
         
 ## ,Discount Facotr,Annualized Spot Rates,Annualized Forward Rates,Par Rates, BEY
@@ -213,7 +212,7 @@ def extract_data(workbook, df, sheet_type):
                 write_main_headers(workbook, worksheet, country_name)
                 write_sub_headers(workbook, worksheet,
                                   column_count_base, sensitivity, 
-                                  datetime.strptime(valuation_date.replace("-", "/"), "%Y/%m/%d"), currency)
+                                  valuation_date.replace("-", "/"), currency)
                 write_record(workbook, worksheet,
                              discount_factor, annualized_spot_rates, 
                              annualized_forward_rates, par_rate, 
@@ -239,7 +238,7 @@ def extract_data(workbook, df, sheet_type):
                 write_main_headers(workbook, worksheet, country_name)
                 write_sub_headers(workbook, worksheet,
                                   column_count_scenario, sensitivity,
-                                  datetime.strptime(valuation_date.replace("-", "/"), "%Y/%m/%d"), currency)
+                                  valuation_date.replace("-", "/"), currency)
             ## Sheet flag is used to populate the valutaion date as sheet name for base excel sheet
             if sheet_flag_scenario == 0:
                 sheet_flag_scenario = 1
@@ -257,7 +256,7 @@ def extract_data(workbook, df, sheet_type):
                 write_main_headers(workbook, worksheet, country_name)
                 write_sub_headers(workbook, worksheet,
                                   column_count_scenario, sensitivity, 
-                                  datetime.strptime(valuation_date.replace("-", "/"), "%Y/%m/%d"), currency)
+                                  valuation_date.replace("-", "/"), currency)
                 write_record(workbook, worksheet,
                              discount_factor, annualized_spot_rates, 
                              annualized_forward_rates, par_rate, 
@@ -278,5 +277,5 @@ workbook = xlsxwriter.Workbook('Rates.xlsx')
 initialize_global_variables()
 for file_name in glob.glob("*.csv"):
     df = pd.read_csv(file_name, sep = ",")
-    extract_data(workbook, df, "BASE_ALL")
+    extract_data(workbook, df, "SENSITIVITY_ALL")
 workbook.close()
