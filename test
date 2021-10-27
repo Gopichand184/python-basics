@@ -1,0 +1,16 @@
+user_selection_tbl_name = "LDTI.T_DISCOUNT_RATE_STANDARDIZED_INPUT_BS"
+temp_query = "SELECT * FROM \
+(SELECT sub_res.*, row_number() over (partition by ValuationDate, CurrencyCd, RateTypeCd, AssetId, SourceName, TenorInMonths ORDER BY table_type DESC ) as row_num  \
+FROM \
+(SELECT *, 1 as table_type   \
+FROM "+ tbl_name +" \
+WHERE CurrencyCd = '" + currency_cd + "' \
+AND CountryCd = '" + country_cd + "'    \
+AND ValuationDate IN (SELECT ratedate FROM "+input_selection_tbl_name+"  WHERE ValuationDate = '" + vltn_date + "' ) \
+UNION ALL \
+SELECT *, 2 as table_type   \
+FROM "+ user_selection_tbl_name +" \
+WHERE CurrencyCd = '" + currency_cd + "' \
+AND CountryCd = '" + country_cd + "'    \
+AND ValuationDate IN (SELECT ratedate FROM "+input_selection_tbl_name+"  WHERE ValuationDate = '" + vltn_date + "' ) \
+) sub_res ) WHERE row_num = 1  "
